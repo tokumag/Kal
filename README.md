@@ -59,6 +59,15 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 
+## 👥 Contributors
+
+- **Tokuma Gebissa** ([@tokumag](https://github.com/tokumag)) — Project Lead & Architecture
+- **Nardos Fekadu** ([@Nardos-12-Fekadu](https://github.com/Nardos-12-Fekadu)) — Deterministic Triage Engine, Next.js API & Voice UI
+
+See [CONTRIBUTORS.md](./CONTRIBUTORS.md) for full contribution details.
+
+---
+
 ## License & STARK Hackathon 2026
 Built for the STARK Official Hackathon (Sep 09 - Oct 02, 2026).
 Canonical Shared Repository: [https://github.com/tokumag/Kal](https://github.com/tokumag/Kal)
