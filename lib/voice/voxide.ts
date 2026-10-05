@@ -17,12 +17,13 @@ export interface VoiceClient {
   stopSpeaking(): void;
 }
 
+let activeRecognition: any = null;
+
 export const voiceClient: VoiceClient = {
   isSupported() {
     return typeof window !== "undefined" && ("webkitSpeechRecognition" in window || "SpeechRecognition" in window);
   },
   startListening(options: VoiceListenOptions) {
-    // Stub implementation for frontend contract
     if (typeof window === "undefined") return;
     const SpeechRecognition = (window as unknown as { SpeechRecognition?: any; webkitSpeechRecognition?: any }).SpeechRecognition ||
       (window as unknown as { webkitSpeechRecognition?: any }).webkitSpeechRecognition;
@@ -32,6 +33,7 @@ export const voiceClient: VoiceClient = {
     }
     try {
       const recognition = new SpeechRecognition();
+      activeRecognition = recognition;
       recognition.lang = options.language === "am" ? "am-ET" : "en-US";
       recognition.continuous = false;
       recognition.interimResults = false;
@@ -43,15 +45,22 @@ export const voiceClient: VoiceClient = {
         options.onError(event.error || "Speech recognition error");
       };
       recognition.onend = () => {
+        activeRecognition = null;
         options.onEnd();
       };
       recognition.start();
     } catch (err: any) {
+      activeRecognition = null;
       options.onError(err?.message || "Failed to start voice recognition");
     }
   },
   stopListening() {
-    // Stub
+    if (activeRecognition) {
+      try {
+        activeRecognition.stop();
+      } catch {}
+      activeRecognition = null;
+    }
   },
   speak(text: string, language: "en" | "am", onEnd?: () => void) {
     if (typeof window === "undefined" || !("speechSynthesis" in window)) {
