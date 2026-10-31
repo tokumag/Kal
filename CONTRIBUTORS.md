@@ -9,6 +9,7 @@ Kalcare is a voice-first maternal and newborn health navigation platform built f
 | Contributor | GitHub | Role | Key Contributions |
 |---|---|---|---|
 | **Tokuma Gebissa** | [@tokumag](https://github.com/tokumag) | Project Lead & Architecture | Repository owner, foundational architecture, product ideation, and STARK submission |
+| **Kalkidan Wondimagegnehu** | [@KalkidanAI](https://github.com/KalkidanAI) | Back-End Developer | Clinical triage engine, backend API routing, automated testing suites, and data models |
 | **Nardos Fekadu** | [@Nardos-12-Fekadu](https://github.com/Nardos-12-Fekadu) | Full-Stack & Clinical Engine | Deterministic clinical triage engine, shared TypeScript contracts, Next.js `/api/triage` API, Voice UI integration, and automated test suites |
 
 ---

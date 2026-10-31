@@ -62,6 +62,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 ## 👥 Contributors
 
 - **Tokuma Gebissa** ([@tokumag](https://github.com/tokumag)) — Project Lead & Architecture
+- **Kalkidan Wondimagegnehu** ([@KalkidanAI](https://github.com/KalkidanAI)) — Back-End Developer (Triage Engine & API)
 - **Nardos Fekadu** ([@Nardos-12-Fekadu](https://github.com/Nardos-12-Fekadu)) — Deterministic Triage Engine, Next.js API & Voice UI
 
 See [CONTRIBUTORS.md](./CONTRIBUTORS.md) for full contribution details.
