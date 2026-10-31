@@ -6,12 +6,14 @@ import { Header } from "@/components/Header";
 import { SymptomInputForm } from "@/components/SymptomInputForm";
 import { TriageResultCard } from "@/components/TriageResultCard";
 import { EmergencyHotlineCard } from "@/components/EmergencyHotlineCard";
+import { ContributorsModal } from "@/components/ContributorsModal";
 
 export default function Home() {
   const [language, setLanguage] = useState<"en" | "am">("en");
   const [triageResult, setTriageResult] = useState<TriageResult | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isContributorsOpen, setIsContributorsOpen] = useState(false);
 
   const handleSymptomSubmit = async (input: SymptomInput) => {
     setIsLoading(true);
@@ -45,7 +47,11 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col justify-between">
       <div>
-        <Header language={language} onLanguageChange={setLanguage} />
+        <Header
+          language={language}
+          onLanguageChange={setLanguage}
+          onOpenContributors={() => setIsContributorsOpen(true)}
+        />
 
         <main className="max-w-4xl mx-auto px-4 py-6 space-y-6">
           {/* Architectural Safety Banner */}
@@ -58,9 +64,12 @@ export default function Home() {
                   : "Voxide understands speech. Deterministic rules decide urgency. Evidence explains why."}
               </span>
             </div>
-            <span className="hidden md:inline-block px-2 py-0.5 rounded bg-teal-950 text-teal-300 font-mono text-[10px] border border-teal-800">
-              STARK COMPLIANT
-            </span>
+            <button
+              onClick={() => setIsContributorsOpen(true)}
+              className="text-xs text-teal-400 hover:text-teal-300 underline font-mono cursor-pointer"
+            >
+              {language === "am" ? "ቡድኑን ይመልከቱ →" : "View Team & Arch →"}
+            </button>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -108,10 +117,25 @@ export default function Home() {
       </div>
 
       <footer className="border-t border-slate-200 bg-white py-4 mt-8">
-        <div className="max-w-4xl mx-auto px-4 text-center text-xs text-slate-500">
-          Kalcare Hackathon Prototype — STARK Sep 09 - Oct 02 • Sourced WHO & FMOH Clinical Navigation
+        <div className="max-w-4xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-2">
+          <span>
+            Kalcare Hackathon Prototype — STARK Sep 09 - Oct 02 • Sourced WHO & FMOH Clinical Navigation
+          </span>
+          <button
+            onClick={() => setIsContributorsOpen(true)}
+            className="text-teal-600 hover:text-teal-700 font-medium hover:underline inline-flex items-center space-x-1"
+          >
+            <span>👥 {language === "am" ? "የቡድኑ አበርካቾች" : "Team & Contributors"}</span>
+          </button>
         </div>
       </footer>
+
+      {/* Contributors & Architecture Modal */}
+      <ContributorsModal
+        isOpen={isContributorsOpen}
+        onClose={() => setIsContributorsOpen(false)}
+        language={language}
+      />
     </div>
   );
 }
